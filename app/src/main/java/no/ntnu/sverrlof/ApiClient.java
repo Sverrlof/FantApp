@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static final String  BASE_URL = "10.22.192.252:8080:Fant/api/";
+    private static final String  BASE_URL = "http://10.22.192.252:8080:Fant/api/";
 
     private static ApiClient SINGLETON;
      Retrofit retrofit = null;
@@ -39,6 +39,4 @@ public class ApiClient {
     public FantApi getApi() {
         return retrofit.create(FantApi.class);
     }
-
-
 }

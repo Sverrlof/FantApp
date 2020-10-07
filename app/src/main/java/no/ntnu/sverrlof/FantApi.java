@@ -1,9 +1,6 @@
 package no.ntnu.sverrlof;
 
-import androidx.annotation.NonNull;
-
-import java.util.List;
-
+import no.ntnu.sverrlof.fragment.RegisterFragment;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;

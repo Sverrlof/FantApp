@@ -6,11 +6,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-
-    private static final String  BASE_URL = "http://10.22.192.252:8080:Fant/api/";
+    //URL AT SCHOOL
+    private static final String BASE_URL = "http://10.22.192.252:8080:Fant/api/";
+    //URL AT HOME
+   // private static final String BASE_URL = "http://192.168.0.160:8080:Fant/api/";
 
     private static ApiClient SINGLETON;
-     Retrofit retrofit = null;
+    Retrofit retrofit = null;
 
 
     public Retrofit getClient() {

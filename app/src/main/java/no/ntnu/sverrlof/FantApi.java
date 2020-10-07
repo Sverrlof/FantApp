@@ -7,6 +7,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 
 public interface FantApi {
@@ -17,8 +18,9 @@ public interface FantApi {
                                          @Field("uid") String username,
                                          @Field("pwd") String password);
 
+
     @GET("auth/login")
-    public Call<ResponseBody> userLogin(@Field("uid") String username,
-                                        @Field("pwd") String password);
+    public Call<ResponseBody> userLogin(@Query("uid") String username,
+                                        @Query("pwd") String password);
 
 }

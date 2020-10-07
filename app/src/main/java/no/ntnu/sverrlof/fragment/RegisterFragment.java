@@ -2,6 +2,7 @@ package no.ntnu.sverrlof.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.io.IOException;
 
@@ -98,9 +100,18 @@ public class RegisterFragment extends Fragment {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     Activity mActivity = getActivity();
-                    if (response.body() != null) {
-                        String s = response.body().string();
-                        Toast.makeText(mActivity, "Account Created!", Toast.LENGTH_SHORT).show();
+                    Fragment newFragment = new LoginFragment();
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+
+                    if (response.isSuccessful()) {
+                        if (response.body() != null) {
+                            String s = response.body().string();
+                            Toast.makeText(mActivity, "Account Created! Login to buy and sell items!", Toast.LENGTH_SHORT).show();
+                            fragmentTransaction.replace(R.id.fragment_contatiner, newFragment).commit();
+                        }
+                    }
+                    else {
+                        Toast.makeText(mActivity,"Something went wrong, please try again.", Toast.LENGTH_LONG).show();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

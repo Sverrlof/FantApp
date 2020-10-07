@@ -1,5 +1,6 @@
 package no.ntnu.sverrlof.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +12,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import no.ntnu.sverrlof.ApiClient;
 import no.ntnu.sverrlof.R;
+import no.ntnu.sverrlof.User;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,6 +26,7 @@ import retrofit2.Response;
 public class LoginFragment extends Fragment {
 
     EditText editTextUsername, editTextPwd;
+    private User user = new User();
 
     @Nullable
     @Override
@@ -33,6 +38,7 @@ public class LoginFragment extends Fragment {
         editTextPwd = view.findViewById(R.id.editTextTextPassword);
 
         Button loginBtn = (Button) view.findViewById(R.id.loginbtn);
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +68,7 @@ public class LoginFragment extends Fragment {
             return;
         }
 
+
         Call<ResponseBody> call = ApiClient
                 .getSINGLETON()
                 .getApi()
@@ -70,7 +77,16 @@ public class LoginFragment extends Fragment {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Toast.makeText(getActivity(), "Login successfull", Toast.LENGTH_LONG).show();
+                if (response.isSuccessful()) {
+                    Fragment newFragment = new ItemsFragment();
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    user.setJwt(response.body().toString());
+                    Toast.makeText(getActivity(), "Login successfull", Toast.LENGTH_LONG).show();
+                    fragmentTransaction.replace(R.id.fragment_contatiner, newFragment).commit();
+                }
+                else {
+                    Toast.makeText(getActivity(), "Login Failed, please try again", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

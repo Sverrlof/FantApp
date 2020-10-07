@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     //URL AT SCHOOL
-    private static final String BASE_URL = "http://10.22.192.252:8080:Fant/api/";
+    private static final String BASE_URL = "http://10.22.192.252:8080/Fant/api/";
     //URL AT HOME
    // private static final String BASE_URL = "http://192.168.0.160:8080:Fant/api/";
 
@@ -15,8 +15,7 @@ public class ApiClient {
     Retrofit retrofit = null;
 
 
-    public Retrofit getClient() {
-
+    public ApiClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -26,7 +25,6 @@ public class ApiClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
-        return retrofit;
     }
 
     // Checks if an instance has been created or not

@@ -1,5 +1,6 @@
 package no.ntnu.sverrlof.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -96,8 +97,11 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
-                    String s = response.body().string();
-                    Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
+                    Activity mActivity = getActivity();
+                    if (response.body() != null) {
+                        String s = response.body().string();
+                        Toast.makeText(mActivity, "Account Created!", Toast.LENGTH_SHORT).show();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -105,7 +109,8 @@ public class RegisterFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                Activity mActivity = getActivity();
+                Toast.makeText(mActivity, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

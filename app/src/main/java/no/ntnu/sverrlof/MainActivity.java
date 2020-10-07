@@ -9,13 +9,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.EditText;
 
 import com.google.android.material.navigation.NavigationView;
 
 import no.ntnu.sverrlof.fragment.ItemsFragment;
 import no.ntnu.sverrlof.fragment.LoginFragment;
-import no.ntnu.sverrlof.fragment.MessageFragment;
 import no.ntnu.sverrlof.fragment.RegisterFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,8 +41,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //  Set which fragment to run when the app opens
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_contatiner,
-                    new MessageFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_items);
+                    new LoginFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_login);
         }
     }
 

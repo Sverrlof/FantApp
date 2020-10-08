@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -48,6 +49,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navMenu = navigationView.getMenu();
 
         updateOnStartUp();
+
+       /* FragmentManager fm = getSupportFragmentManager();
+        ItemsFragment itemsFragment = new ItemsFragment();
+        fm.beginTransaction().replace(R.id.fragment_contatiner, itemsFragment).commit();*/
 
         //  Set which fragment to run when the app opens
         if (savedInstanceState == null) {

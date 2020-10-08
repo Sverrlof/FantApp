@@ -1,6 +1,8 @@
 package no.ntnu.sverrlof.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,17 +39,19 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         return holder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.itemTitleView.setText(items.get(position).getItemName());
-        holder.itemPriceView.setText(items.get(position).getPrice());
+        holder.itemPriceView.setText("Price: " + items.get(position).getPrice() + "kr");
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Enter specific item
-                Toast.makeText(context, items.get(position).getItemName(), Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(context, items.get(position).getItemName(), Toast.LENGTH_SHORT).show();
 
-                Item item = items.get(position);
+               // Item item = items.get(position);
+
             }
         });
 
@@ -75,7 +79,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            parent = itemView.findViewById(R.id.parent);
+            parent = itemView.findViewById(R.id.recycleViewParent);
             itemTitleView = itemView.findViewById(R.id.itemTitleView);
             itemPriceView = itemView.findViewById(R.id.itemPriceView);
 

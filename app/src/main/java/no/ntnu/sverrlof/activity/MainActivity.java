@@ -98,7 +98,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void updateOnStartUp() {
+
         UserPrefs userPrefs = new UserPrefs(getApplicationContext());
+
         if (userPrefs.getToken().isEmpty()) {
             navMenu.findItem(R.id.nav_items).setVisible(true);
             navMenu.findItem(R.id.nav_login).setVisible(true);

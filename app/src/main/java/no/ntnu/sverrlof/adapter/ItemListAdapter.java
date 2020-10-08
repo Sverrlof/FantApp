@@ -1,13 +1,18 @@
 package no.ntnu.sverrlof.adapter;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -18,20 +23,38 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
 
     private ArrayList<Item> items = new ArrayList<>();
+    private Context context;
 
-    public ItemListAdapter() {
-
+    public ItemListAdapter(Context context) {
+        this.context = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_specitem, parent, false);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        holder.itemTitleView.setText(items.get(position).getItemName());
+        holder.itemPriceView.setText(items.get(position).getPrice());
+        holder.parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Enter specific item
+                Toast.makeText(context, items.get(position).getItemName(), Toast.LENGTH_SHORT).show();
 
+                Item item = items.get(position);
+            }
+        });
+
+        Glide.with(context)
+                .asBitmap()
+                .load("https://picsum.photos/200")
+                .into(holder.imageView);
     }
 
     @Override
@@ -45,10 +68,18 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView itemTitleView;
+
+        private TextView itemTitleView, itemPriceView;
+        private CardView parent;
+        private ImageView imageView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            parent = itemView.findViewById(R.id.parent);
             itemTitleView = itemView.findViewById(R.id.itemTitleView);
+            itemPriceView = itemView.findViewById(R.id.itemPriceView);
+
+            imageView = itemView.findViewById(R.id.image);
         }
     }
 

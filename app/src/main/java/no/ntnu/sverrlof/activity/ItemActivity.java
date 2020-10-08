@@ -15,7 +15,7 @@ public class ItemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_items);
+        setContentView(R.layout.fragment_items_list);
 
         recyclerView = findViewById(R.id.recyclerView);
     }

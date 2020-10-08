@@ -83,7 +83,6 @@ public class LoginFragment extends Fragment {
                 if (response.isSuccessful()) {
                     Fragment newFragment = new ItemsFragment();
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-
                     try {
                         //System.out.println(response.body().string());
                         userPrefs.setToken(response.body().string());

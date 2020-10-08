@@ -2,13 +2,15 @@ package no.ntnu.sverrlof.model;
 
 public class Item {
     private int imageResource;
-    private String headerView;
+    private String itemName;
     private String descriptionView;
+    private int price;
 
-    public Item(int imageResource, String headerView, String descriptionView) {
+    public Item(int imageResource, String itemName, String descriptionView, int price) {
         this.imageResource = imageResource;
-        this.headerView = headerView;
+        this.itemName = itemName;
         this.descriptionView = descriptionView;
+        this.price = price;
     }
 
     public int getImageResource() {
@@ -19,12 +21,12 @@ public class Item {
         this.imageResource = imageResource;
     }
 
-    public String getHeaderView() {
-        return headerView;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setHeaderView(String headerView) {
-        this.headerView = headerView;
+    public void setItemName(String headerView) {
+        this.itemName = headerView;
     }
 
     public String getDescriptionView() {
@@ -35,12 +37,21 @@ public class Item {
         this.descriptionView = descriptionView;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
                 "imageResource=" + imageResource +
-                ", headerView='" + headerView + '\'' +
+                ", itemName='" + itemName + '\'' +
                 ", descriptionView='" + descriptionView + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

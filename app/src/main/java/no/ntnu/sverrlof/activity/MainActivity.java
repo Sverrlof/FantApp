@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 
 import no.ntnu.sverrlof.R;
+import no.ntnu.sverrlof.fragment.AddItemFragment;
 import no.ntnu.sverrlof.fragment.ItemsFragment;
 import no.ntnu.sverrlof.fragment.LoginFragment;
 import no.ntnu.sverrlof.fragment.RegisterFragment;
@@ -68,6 +69,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_items:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_contatiner,
                         new ItemsFragment()).commit();
+                break;
+
+            case R.id.nav_additem:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_contatiner,
+                        new AddItemFragment()).commit();
                 break;
 
             case R.id.nav_register:

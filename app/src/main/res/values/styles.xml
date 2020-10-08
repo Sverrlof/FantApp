@@ -7,6 +7,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <string name="price_add_item">Price</string>
+    <string name="desc_add_item">Description</string>
+    <string name="item_title_add_item">Item Title</string>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

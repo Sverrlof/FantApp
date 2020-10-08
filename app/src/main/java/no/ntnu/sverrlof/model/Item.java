@@ -1,24 +1,33 @@
 package no.ntnu.sverrlof.model;
 
 public class Item {
-    private int imageResource;
+
     private String itemName;
     private String descriptionView;
     private int price;
+    private long itemId;
+    private boolean isSold;
 
-    public Item(int imageResource, String itemName, String descriptionView, int price) {
-        this.imageResource = imageResource;
+
+    public Item(String itemName, String descriptionView, int price) {
         this.itemName = itemName;
         this.descriptionView = descriptionView;
         this.price = price;
     }
 
-    public int getImageResource() {
-        return imageResource;
+    public Item(String itemName, String descriptionView, int price, long itemId,boolean isSold) {
+        this.itemName = itemName;
+        this.descriptionView = descriptionView;
+        this.price = price;
+        this.isSold = isSold;
     }
 
-    public void setImageResource(int imageResource) {
-        this.imageResource = imageResource;
+    public boolean isSold() {
+        return isSold;
+    }
+
+    public void setSold(boolean sold) {
+        isSold = sold;
     }
 
     public String getItemName() {
@@ -48,7 +57,6 @@ public class Item {
     @Override
     public String toString() {
         return "Item{" +
-                "imageResource=" + imageResource +
                 ", itemName='" + itemName + '\'' +
                 ", descriptionView='" + descriptionView + '\'' +
                 ", price=" + price +

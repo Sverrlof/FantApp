@@ -55,7 +55,7 @@ public class RegisterFragment extends Fragment {
     }
 
     private void userRegister() {
-        String email = editEmail.getText().toString();
+        final String email = editEmail.getText().toString();
         String uid = editUsername.getText().toString();
         String pwd = editPassword.getText().toString();
 
@@ -76,7 +76,6 @@ public class RegisterFragment extends Fragment {
             editEmail.setError("Please enter a valid email!");
             editEmail.requestFocus();
         }
-
 
         if (pwd.isEmpty()) {
             editPassword.setError("Please enter a password");
@@ -103,15 +102,15 @@ public class RegisterFragment extends Fragment {
                     Fragment newFragment = new LoginFragment();
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 
+
                     if (response.isSuccessful()) {
                         if (response.body() != null) {
-                            String s = response.body().string();
+                            response.body().string();
                             Toast.makeText(mActivity, "Account Created! Login to buy and sell items!", Toast.LENGTH_SHORT).show();
                             fragmentTransaction.replace(R.id.fragment_contatiner, newFragment).commit();
                         }
-                    }
-                    else {
-                        Toast.makeText(mActivity,"Something went wrong, please try again.", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(mActivity, "Something went wrong, please try again.", Toast.LENGTH_LONG).show();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

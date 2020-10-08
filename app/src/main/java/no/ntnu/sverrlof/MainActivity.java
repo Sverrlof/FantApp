@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
@@ -15,34 +16,42 @@ import com.google.android.material.navigation.NavigationView;
 import no.ntnu.sverrlof.fragment.ItemsFragment;
 import no.ntnu.sverrlof.fragment.LoginFragment;
 import no.ntnu.sverrlof.fragment.RegisterFragment;
+import no.ntnu.sverrlof.preference.UserPrefs;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
     private DrawerLayout drawerLayout;
+    private Menu navMenu;
+    private NavigationView navigationView;
+    private Toolbar toolbar;
+    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        navMenu = navigationView.getMenu();
+        updateOnStartUp();
+
         //  Set which fragment to run when the app opens
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_contatiner,
-                    new LoginFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_login);
+                    new ItemsFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_items);
         }
     }
 
@@ -78,5 +87,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else {
             super.onBackPressed();
         }
+    }
+
+    public void updateOnStartUp() {
+        UserPrefs userPrefs = new UserPrefs(getApplicationContext());
+        if (userPrefs.getToken().isEmpty()) {
+            navMenu.findItem(R.id.nav_items).setVisible(true);
+            navMenu.findItem(R.id.nav_login).setVisible(true);
+            navMenu.findItem(R.id.nav_register).setVisible(true);
+        }
+
+        else {
+            navMenu.findItem(R.id.nav_items).setVisible(true);
+            navMenu.findItem(R.id.nav_login).setVisible(false);
+            navMenu.findItem(R.id.nav_register).setVisible(false);
+        }
+
     }
 }

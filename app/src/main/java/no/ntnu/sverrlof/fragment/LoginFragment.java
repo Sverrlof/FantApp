@@ -1,5 +1,6 @@
 package no.ntnu.sverrlof.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,9 +16,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import no.ntnu.sverrlof.ApiClient;
 import no.ntnu.sverrlof.R;
 import no.ntnu.sverrlof.User;
+import no.ntnu.sverrlof.preference.UserPrefs;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,6 +63,8 @@ public class LoginFragment extends Fragment {
         String uid = editTextUsername.getText().toString().trim();
         String pwd = editTextPwd.getText().toString().trim();
 
+        final UserPrefs userPrefs = new UserPrefs(getContext());
+
         if (uid.isEmpty()) {
             editTextUsername.setError("Please enter a valid username");
             editTextUsername.requestFocus();
@@ -80,11 +89,21 @@ public class LoginFragment extends Fragment {
                 if (response.isSuccessful()) {
                     Fragment newFragment = new ItemsFragment();
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    user.setJwt(response.body().toString());
-                    Toast.makeText(getActivity(), "Login successfull", Toast.LENGTH_LONG).show();
+
+                    try {
+                        //System.out.println(response.body().string());
+                        userPrefs.setToken(response.body().string());
+                        getActivity().recreate();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_LONG).show();
                     fragmentTransaction.replace(R.id.fragment_contatiner, newFragment).commit();
-                }
-                else {
+
+
+                } else {
                     Toast.makeText(getActivity(), "Login Failed, please try again", Toast.LENGTH_LONG).show();
                 }
             }
@@ -94,6 +113,5 @@ public class LoginFragment extends Fragment {
 
             }
         });
-
     }
 }

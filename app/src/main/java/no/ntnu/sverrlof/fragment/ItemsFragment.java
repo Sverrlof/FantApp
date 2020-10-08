@@ -9,6 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+
+import no.ntnu.sverrlof.Item;
 import no.ntnu.sverrlof.R;
 
 public class ItemsFragment extends Fragment {
@@ -16,5 +19,6 @@ public class ItemsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_items, container, false);
+
     }
 }

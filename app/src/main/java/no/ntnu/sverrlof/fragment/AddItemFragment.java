@@ -84,6 +84,7 @@ public class AddItemFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Item> call, Throwable t) {
+                Toast.makeText(getContext(), "NO WORKING MAN", Toast.LENGTH_SHORT).show();
 
             }
         });

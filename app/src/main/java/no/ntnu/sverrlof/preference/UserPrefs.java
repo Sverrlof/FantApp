@@ -3,9 +3,6 @@ package no.ntnu.sverrlof.preference;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
-import no.ntnu.sverrlof.User;
 
 public class UserPrefs {
 

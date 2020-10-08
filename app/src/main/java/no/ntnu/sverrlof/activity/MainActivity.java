@@ -67,6 +67,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_contatiner,
                         new RegisterFragment()).commit();
                 break;
+            case R.id.nav_logout:
+                UserPrefs userPrefs = new UserPrefs(this);
+                userPrefs.setToken("");
+                finish();
+                startActivity(getIntent());
+                break;
 
             case R.id.nav_login:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_contatiner,
@@ -95,12 +101,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navMenu.findItem(R.id.nav_items).setVisible(true);
             navMenu.findItem(R.id.nav_login).setVisible(true);
             navMenu.findItem(R.id.nav_register).setVisible(true);
+            navMenu.findItem(R.id.nav_additem).setVisible(false);
+            navMenu.findItem(R.id.nav_logout).setVisible(false);
         }
 
         else {
             navMenu.findItem(R.id.nav_items).setVisible(true);
             navMenu.findItem(R.id.nav_login).setVisible(false);
             navMenu.findItem(R.id.nav_register).setVisible(false);
+            navMenu.findItem(R.id.nav_additem).setVisible(true);
+            navMenu.findItem(R.id.nav_logout).setVisible(true);
         }
 
     }

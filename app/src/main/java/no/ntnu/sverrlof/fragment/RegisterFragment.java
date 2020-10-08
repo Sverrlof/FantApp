@@ -2,7 +2,6 @@ package no.ntnu.sverrlof.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.io.IOException;
 
-import no.ntnu.sverrlof.ApiClient;
+import no.ntnu.sverrlof.Rest.ApiClient;
 import no.ntnu.sverrlof.R;
 import okhttp3.ResponseBody;
 import retrofit2.Call;

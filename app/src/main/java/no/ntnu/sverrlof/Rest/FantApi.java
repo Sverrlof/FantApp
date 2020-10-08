@@ -1,6 +1,9 @@
-package no.ntnu.sverrlof;
+package no.ntnu.sverrlof.Rest;
+
+import java.util.List;
 
 import no.ntnu.sverrlof.fragment.RegisterFragment;
+import no.ntnu.sverrlof.model.Item;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -22,5 +25,8 @@ public interface FantApi {
     @GET("auth/login")
     public Call<ResponseBody> userLogin(@Query("uid") String username,
                                         @Query("pwd") String password);
+
+    @GET("service/items")
+    public Call<List<Item>> getAllItems();
 
 }

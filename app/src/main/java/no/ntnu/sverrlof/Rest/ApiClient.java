@@ -1,4 +1,4 @@
-package no.ntnu.sverrlof;
+package no.ntnu.sverrlof.Rest;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

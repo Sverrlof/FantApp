@@ -1,7 +1,5 @@
 package no.ntnu.sverrlof.fragment;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +11,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
-import no.ntnu.sverrlof.ApiClient;
+import no.ntnu.sverrlof.Rest.ApiClient;
 import no.ntnu.sverrlof.R;
-import no.ntnu.sverrlof.User;
+import no.ntnu.sverrlof.model.User;
 import no.ntnu.sverrlof.preference.UserPrefs;
 import okhttp3.ResponseBody;
 import retrofit2.Call;

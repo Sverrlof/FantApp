@@ -1,4 +1,4 @@
-package no.ntnu.sverrlof;
+package no.ntnu.sverrlof.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 
+import no.ntnu.sverrlof.R;
 import no.ntnu.sverrlof.fragment.ItemsFragment;
 import no.ntnu.sverrlof.fragment.LoginFragment;
 import no.ntnu.sverrlof.fragment.RegisterFragment;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         navMenu = navigationView.getMenu();
+
         updateOnStartUp();
 
         //  Set which fragment to run when the app opens

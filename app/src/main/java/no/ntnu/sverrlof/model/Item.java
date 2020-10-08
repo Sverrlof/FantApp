@@ -1,4 +1,4 @@
-package no.ntnu.sverrlof;
+package no.ntnu.sverrlof.model;
 
 public class Item {
     private int imageResource;

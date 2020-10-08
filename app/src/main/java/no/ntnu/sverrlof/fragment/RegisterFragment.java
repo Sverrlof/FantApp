@@ -109,7 +109,12 @@ public class RegisterFragment extends Fragment {
                             fragmentTransaction.replace(R.id.fragment_contatiner, newFragment).commit();
                         }
                     } else {
-                        Toast.makeText(mActivity, "Something went wrong, please try again.", Toast.LENGTH_LONG).show();
+                        if (response.code() == 400) {
+                            String errorMessage = "A user with this username is taken";
+                            Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(mActivity, "Something went wrong, please try again.", Toast.LENGTH_LONG).show();
+                        }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

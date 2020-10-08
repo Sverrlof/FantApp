@@ -91,13 +91,10 @@ public class LoginFragment extends Fragment {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
-
                     Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_LONG).show();
                     fragmentTransaction.replace(R.id.fragment_contatiner, newFragment).commit();
-
-
                 } else {
+
                     Toast.makeText(getActivity(), "Login Failed, please try again", Toast.LENGTH_LONG).show();
                 }
             }

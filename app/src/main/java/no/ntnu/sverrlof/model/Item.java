@@ -34,4 +34,13 @@ public class Item {
     public void setDescriptionView(String descriptionView) {
         this.descriptionView = descriptionView;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "imageResource=" + imageResource +
+                ", headerView='" + headerView + '\'' +
+                ", descriptionView='" + descriptionView + '\'' +
+                '}';
+    }
 }

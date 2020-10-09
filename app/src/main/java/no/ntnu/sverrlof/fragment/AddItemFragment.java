@@ -18,6 +18,7 @@ import no.ntnu.sverrlof.Rest.ApiClient;
 import no.ntnu.sverrlof.model.Item;
 import no.ntnu.sverrlof.model.User;
 import no.ntnu.sverrlof.preference.UserPrefs;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,15 +63,17 @@ public class AddItemFragment extends Fragment {
         int itemPrice = Integer.parseInt(editTextPrice.getText().toString());
 
         UserPrefs userPrefs = new UserPrefs(getContext());
+        String token = "Bearer " + userPrefs.getToken();
 
-        Call<Item> call = ApiClient
+
+        Call<ResponseBody> call = ApiClient
                 .getSINGLETON()
                 .getApi()
-                .addItem(userPrefs.getToken(), itemTitle, itemDesc, itemPrice);
+                .addItem(token, itemTitle, itemDesc, itemPrice);
 
-        call.enqueue(new Callback<Item>() {
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<Item> call, Response<Item> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getContext(), "Item was added!", Toast.LENGTH_SHORT).show();
                     Fragment newFragment = new ItemsFragment();
@@ -78,14 +81,14 @@ public class AddItemFragment extends Fragment {
                     fragmentTransaction.replace(R.id.fragment_contatiner, newFragment).commit();
                 }
                 else {
+                    System.out.println(response.body());
                     Toast.makeText(getContext(), "Sometime you just have to try again", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Item> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(getContext(), "NO WORKING MAN", Toast.LENGTH_SHORT).show();
-
             }
         });
     }

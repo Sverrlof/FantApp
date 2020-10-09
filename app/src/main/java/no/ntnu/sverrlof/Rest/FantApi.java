@@ -6,6 +6,7 @@ import no.ntnu.sverrlof.fragment.RegisterFragment;
 import no.ntnu.sverrlof.model.Item;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -31,9 +32,10 @@ public interface FantApi {
     @GET("service/items")
     public Call<List<Item>> getAllItems();
 
+
     @FormUrlEncoded
     @POST("service/additem")
-    public Call<Item> addItem(@Header("token") String token,
+    public Call<ResponseBody> addItem(@Header("Authorization") String token,
                               @Field("item") String item,
                               @Field("description") String description,
                               @Field("price") int price);

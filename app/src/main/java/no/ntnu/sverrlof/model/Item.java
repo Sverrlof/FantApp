@@ -15,7 +15,7 @@ public class Item {
         this.price = price;
     }
 
-    public Item(String itemName, String descriptionView, int price, long itemId,boolean isSold) {
+    public Item(String itemName, String descriptionView, int price, boolean isSold) {
         this.itemName = itemName;
         this.descriptionView = descriptionView;
         this.price = price;

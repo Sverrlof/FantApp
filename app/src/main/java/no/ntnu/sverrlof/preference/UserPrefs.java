@@ -27,6 +27,14 @@ public class UserPrefs {
         prefsEditor.putString("token", token).commit();
     }
 
+    public String getUser() {
+        return sharedPreferences.getString("user", "");
+    }
+
+    public void setUser(String user) {
+        prefsEditor.putString("user", user).commit();
+    }
+
 
 
 /*

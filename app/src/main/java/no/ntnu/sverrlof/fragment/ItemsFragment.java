@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,7 +44,7 @@ public class ItemsFragment extends Fragment {
         adapter.setItems(items);
 
         itemRecyclerView.setAdapter(adapter);
-        itemRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        itemRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
 
         return view;
 
@@ -61,6 +62,7 @@ public class ItemsFragment extends Fragment {
             public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
                 if (response.isSuccessful()) {
                     items = (ArrayList<Item>) response.body();
+                    System.out.println(response.body().toString());
                     adapter.setItems(items);
                 } else {
                     Toast.makeText(getContext(), "Failed to fetch items. Try again", Toast.LENGTH_SHORT).show();

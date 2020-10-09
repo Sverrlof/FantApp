@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import no.ntnu.sverrlof.R;
+import no.ntnu.sverrlof.activity.ItemActivity;
 import no.ntnu.sverrlof.model.Item;
 
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
@@ -42,15 +43,24 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.itemTitleView.setText( items.get(position).getItemName());
+        holder.itemTitleView.setText(items.get(position).getItemName());
         holder.itemPriceView.setText("Price: " + items.get(position).getPrice() + "kr");
+
+
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Enter specific item
-              //  Toast.makeText(context, items.get(position).getItemName(), Toast.LENGTH_SHORT).show();
+                // Enter specific item
+                Toast.makeText(context, items.get(position).getItemName(), Toast.LENGTH_SHORT).show();
 
-               // Item item = items.get(position);
+                Item item = items.get(position);
+
+                Intent intent = new Intent(context, ItemActivity.class);
+                intent.putExtra("item", item.getItemName());
+                intent.putExtra("description", item.getDescriptionView());
+                intent.putExtra("price", Integer.toString(item.getPrice()));
+                intent.putExtra("itemid", Long.toString(item.getItemid()));
+                view.getContext().startActivity(intent);
 
             }
         });

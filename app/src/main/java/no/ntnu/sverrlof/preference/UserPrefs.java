@@ -8,14 +8,11 @@ public class UserPrefs {
 
     private static final String SHARED_PREF_NAME = "shared_preferences";
 
-    private static UserPrefs mInstance;
-    private Context context;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor prefsEditor;
 
     public UserPrefs(Context context) {
         this.sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Activity.MODE_PRIVATE);
-        this.context = context;
         this.prefsEditor = sharedPreferences.edit();
     }
 

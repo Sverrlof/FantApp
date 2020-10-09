@@ -13,6 +13,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 
@@ -36,8 +38,12 @@ public interface FantApi {
     @FormUrlEncoded
     @POST("service/additem")
     public Call<ResponseBody> addItem(@Header("Authorization") String token,
-                              @Field("item") String item,
-                              @Field("description") String description,
-                              @Field("price") int price);
+                                      @Field("item") String item,
+                                      @Field("description") String description,
+                                      @Field("price") int price);
+
+    @PUT("service/purchase")
+    public Call<ResponseBody> purchaseItem(@Header("Authorization") String token,
+                                           @Query("iid") Long itemid);
 
 }

@@ -1,5 +1,6 @@
 package no.ntnu.sverrlof.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,10 +42,9 @@ public class AddItemFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 int price = Integer.parseInt(editTextPrice.getText().toString());
-                if (editTextTitle.getText().toString().isEmpty() || price < 0) {
+                if (editTextTitle.getText().toString().length() == 0 || price < 0) {
                     Toast.makeText(getContext(), "Fill in the empty fields", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     addItem();
                 }
 
@@ -59,8 +59,8 @@ public class AddItemFragment extends Fragment {
 
     public void addItem() {
         final String itemTitle = editTextTitle.getText().toString();
-        String itemDesc = editTextDesc.getText().toString();
-        int itemPrice = Integer.parseInt(editTextPrice.getText().toString());
+        final String itemDesc = editTextDesc.getText().toString();
+        final int itemPrice = Integer.parseInt(editTextPrice.getText().toString());
 
         UserPrefs userPrefs = new UserPrefs(getContext());
         String token = "Bearer " + userPrefs.getToken();
@@ -75,13 +75,11 @@ public class AddItemFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-
                     Toast.makeText(getContext(), "Item was added!", Toast.LENGTH_SHORT).show();
                     Fragment newFragment = new ItemsFragment();
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_contatiner, newFragment).commit();
-                }
-                else {
+                } else {
                     System.out.println(response.body());
                     Toast.makeText(getContext(), "Sometime you just have to try again", Toast.LENGTH_SHORT).show();
                 }

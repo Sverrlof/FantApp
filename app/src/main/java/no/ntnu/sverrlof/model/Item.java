@@ -2,48 +2,39 @@ package no.ntnu.sverrlof.model;
 
 public class Item {
 
-    private String itemName;
-    private String descriptionView;
+    private String item;
+    private String description;
     private int price;
-    private long itemId;
-    private boolean isSold;
+    private long itemid;
 
 
     public Item(String itemName, String descriptionView, int price) {
-        this.itemName = itemName;
-        this.descriptionView = descriptionView;
+        this.item = itemName;
+        this.description = descriptionView;
         this.price = price;
     }
 
-    public Item(String itemName, String descriptionView, int price, boolean isSold) {
-        this.itemName = itemName;
-        this.descriptionView = descriptionView;
+/*    public Item(String itemName, String descriptionView, int price) {
+        this.item = itemName;
+        this.description = descriptionView;
         this.price = price;
-        this.isSold = isSold;
-    }
 
-    public boolean isSold() {
-        return isSold;
-    }
-
-    public void setSold(boolean sold) {
-        isSold = sold;
-    }
+    }*/
 
     public String getItemName() {
-        return itemName;
+        return item;
     }
 
     public void setItemName(String headerView) {
-        this.itemName = headerView;
+        this.item = headerView;
     }
 
     public String getDescriptionView() {
-        return descriptionView;
+        return description;
     }
 
     public void setDescriptionView(String descriptionView) {
-        this.descriptionView = descriptionView;
+        this.description = descriptionView;
     }
 
     public int getPrice() {
@@ -54,11 +45,16 @@ public class Item {
         this.price = price;
     }
 
+    public long getItemid() {
+        return itemid;
+    }
+
+
     @Override
     public String toString() {
         return "Item{" +
-                ", itemName='" + itemName + '\'' +
-                ", descriptionView='" + descriptionView + '\'' +
+                ", itemName='" + item + '\'' +
+                ", descriptionView='" + description + '\'' +
                 ", price=" + price +
                 '}';
     }

@@ -58,7 +58,7 @@ public class AddItemFragment extends Fragment {
 
 
     public void addItem() {
-        String itemTitle = editTextTitle.getText().toString();
+        final String itemTitle = editTextTitle.getText().toString();
         String itemDesc = editTextDesc.getText().toString();
         int itemPrice = Integer.parseInt(editTextPrice.getText().toString());
 
@@ -75,6 +75,7 @@ public class AddItemFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
+
                     Toast.makeText(getContext(), "Item was added!", Toast.LENGTH_SHORT).show();
                     Fragment newFragment = new ItemsFragment();
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();

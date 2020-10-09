@@ -42,7 +42,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.itemTitleView.setText(items.get(position).getItemName());
+        holder.itemTitleView.setText( items.get(position).getItemName());
         holder.itemPriceView.setText("Price: " + items.get(position).getPrice() + "kr");
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override

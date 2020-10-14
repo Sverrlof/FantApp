@@ -76,6 +76,7 @@ public class AddItemFragment extends Fragment {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getContext(), "Item was added!", Toast.LENGTH_SHORT).show();
+
                     Fragment newFragment = new ItemsFragment();
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_contatiner, newFragment).commit();

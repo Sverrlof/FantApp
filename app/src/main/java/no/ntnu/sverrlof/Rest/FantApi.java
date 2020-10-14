@@ -44,6 +44,6 @@ public interface FantApi {
 
     @PUT("service/purchase")
     public Call<ResponseBody> purchaseItem(@Header("Authorization") String token,
-                                           @Query("iid") Long itemid);
+                                           @Query("iid") long itemid);
 
 }

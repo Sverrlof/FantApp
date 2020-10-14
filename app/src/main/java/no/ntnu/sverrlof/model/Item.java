@@ -5,8 +5,13 @@ public class Item {
     private String item;
     private String description;
     private int price;
-    private long itemid;
+    private Long itemid;
 
+
+    public Item(Long itemid) {
+        this.itemid = itemid;
+
+    }
 
     public Item(String itemName, String descriptionView, int price) {
         this.item = itemName;
@@ -14,12 +19,13 @@ public class Item {
         this.price = price;
     }
 
-/*    public Item(String itemName, String descriptionView, int price) {
+    public Item(String itemName, String descriptionView, int price, Long itemid) {
         this.item = itemName;
         this.description = descriptionView;
         this.price = price;
+        this.itemid = itemid;
 
-    }*/
+    }
 
     public String getItemName() {
         return item;
@@ -45,7 +51,7 @@ public class Item {
         this.price = price;
     }
 
-    public long getItemid() {
+    public Long getItemid() {
         return itemid;
     }
 
@@ -55,7 +61,8 @@ public class Item {
         return "Item{" +
                 ", itemName='" + item + '\'' +
                 ", descriptionView='" + description + '\'' +
-                ", price=" + price +
+                ", price=" + price + '\'' +
+                ", itemid=" + itemid + '\'' +
                 '}';
     }
 }

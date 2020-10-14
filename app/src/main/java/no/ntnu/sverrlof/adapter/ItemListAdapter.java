@@ -47,21 +47,22 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         holder.itemPriceView.setText("Price: " + items.get(position).getPrice() + "kr");
 
 
+
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Enter specific item
                 Toast.makeText(context, items.get(position).getItemName(), Toast.LENGTH_SHORT).show();
-
                 Item item = items.get(position);
+
+                System.out.println(item.getItemid());
 
                 Intent intent = new Intent(context, ItemActivity.class);
                 intent.putExtra("item", item.getItemName());
                 intent.putExtra("description", item.getDescriptionView());
                 intent.putExtra("price", Integer.toString(item.getPrice()));
-                intent.putExtra("itemid", Long.toString(item.getItemid()));
+                intent.putExtra("itemid", item.getItemid());
                 view.getContext().startActivity(intent);
-
             }
         });
 
@@ -97,5 +98,10 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         }
     }
 
+    public void setItemId(int position) {
 
+    }
+    public long getItemId(int position) {
+        return items.get(position).getItemid();
+    }
 }

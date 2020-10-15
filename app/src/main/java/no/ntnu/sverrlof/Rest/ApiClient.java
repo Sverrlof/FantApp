@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     //URL AT SCHOOL
-   private static final String BASE_URL = "http://192.168.0.168:8080/Fant/api/";
+   private static final String BASE_URL = "http://10.22.192.252:8080/Fant/api/";
     //URL AT HOME
   // private static final String BASE_URL = "http://192.168.0.160:8080:Fant/api/";
 
